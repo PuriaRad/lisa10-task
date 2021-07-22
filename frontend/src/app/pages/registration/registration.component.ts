@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationAPIService } from 'src/app/core/api/registration-api.service';
 import { RegistrationField } from 'src/app/core/models/RegistrationField.interface';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { RegistrationService } from 'src/app/core/services/registration.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RegistrationComponent implements OnInit {
   registrationFields: RegistrationField[] = [];
@@ -14,7 +18,12 @@ export class RegistrationComponent implements OnInit {
 
   /* ------------------------------- constructor ------------------------------ */
 
-  constructor(private api: RegistrationAPIService, private fb: FormBuilder) {}
+  constructor(
+    private api: RegistrationAPIService,
+    private fb: FormBuilder,
+    private router: Router,
+    private registerService: RegistrationService
+  ) {}
 
   /* -------------------------------- ngOnInit; ------------------------------- */
 
@@ -74,8 +83,21 @@ export class RegistrationComponent implements OnInit {
   }
 
   /* -------------------------------- onSubmit; ------------------------------- */
-  onSubmit(event) {
-    const data = this.form.getRawValue();
+  async onSubmit(event) {
     console.log('this.form :>> ', this.form);
+    if (this.form.valid) {
+      const data = this.form.getRawValue();
+      const res = await this.api.registrationRequest(data);
+      if (res) {
+        swal
+          .fire({
+            title: 'Your registration has been successfully finished!',
+          })
+          .then(() => {
+            this.registerService.isRegistered = true;
+            this.router.navigate(['/welcome']);
+          });
+      }
+    }
   }
 }

@@ -1,4 +1,12 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RegistrationField } from 'src/app/core/models/RegistrationField.interface';
 
@@ -6,6 +14,7 @@ import { RegistrationField } from 'src/app/core/models/RegistrationField.interfa
   selector: 'app-e-input',
   templateUrl: './e-input.component.html',
   styleUrls: ['./e-input.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class EInputComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
@@ -20,7 +29,6 @@ export class EInputComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    console.log('this.field :>> ', this.field.validations);
   }
 
   ngAfterContentChecked(): void {
