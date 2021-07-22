@@ -16,6 +16,11 @@ npm build
 
 ```
 
+## Easy usage with swagger
+
+* Open you're browser to [http://localhost:9001/api-docs/v3/](http://localhost:9001/api-docs/v3/)
+
+
 ## Install Dependencies
 
 Install all package dependencies (one time operation)
