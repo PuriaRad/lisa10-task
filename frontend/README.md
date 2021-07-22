@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 npm install
 
 # run in development mode
-npm run serve
+npm start
 
 # build 
 npm run build
