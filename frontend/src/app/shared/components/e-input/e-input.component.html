@@ -1,0 +1,35 @@
+<div class="form-group" [formGroup]="group">
+  <label class="e-label m-0 p-0" for="exampleFormControlFile1"
+    >{{ field.name }}
+  </label>
+  <small class="text-danger" *ngIf="field.required"> * </small>
+
+  <input
+    matInput
+    [formControlName]="field.name"
+    [placeholder]="field.label"
+    [type]="field.type != 'phone' ? field.type : 'tel'"
+    [class.is-valid]="
+      group.get(field.name).valid && group.get(field.name).touched
+    "
+    [class.is-invalid]="
+      !group.get(field.name).valid && group.get(field.name).touched
+    "
+    [required]="field.required"
+    autocomplete="off"
+    aria-autocomplete="none"
+  />
+  <ng-container *ngFor="let validation of field.validations">
+    <small
+      class="form-text text-danger"
+      *ngIf="
+        group.get(field.name).touched &&
+        group
+          .get(field.name)
+          .hasError(validation.name == 'regex' ? 'pattern' : validation.name)
+      "
+    >
+      {{ validation.message }}
+    </small>
+  </ng-container>
+</div>

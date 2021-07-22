@@ -6,7 +6,7 @@ import { CrudService } from '../services/crud.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RegistrationService {
+export class RegistrationAPIService {
   constructor(private crudService: CrudService) {}
 
   /* -------------------------- getRegistrationField; ------------------------- */

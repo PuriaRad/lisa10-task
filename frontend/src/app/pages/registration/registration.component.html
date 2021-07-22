@@ -1,1 +1,29 @@
-<p>registration works!</p>
+<div class="container mt-3">
+  <form
+    *ngIf="form"
+    class="dynamic-form"
+    [formGroup]="form"
+    (submit)="onSubmit($event)"
+  >
+    <div class="row justify-content-center text-center align-items-center">
+      <div class="col-4">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-12 my-3">
+            <ng-container
+              *ngFor="let field of registrationFields"
+              dynamicField
+              [field]="field"
+              [group]="form"
+            >
+            </ng-container>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!form.valid">
+              Registration
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
