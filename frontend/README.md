@@ -1,6 +1,21 @@
 # Lisa10Task
 
+This is a simple task of Lisa10 project.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+
+## Quick Start
+
+```shell
+# install deps
+npm install
+
+# run in development mode
+npm serve
+
+# build 
+npm build
+
+```
 
 ## Development server
 

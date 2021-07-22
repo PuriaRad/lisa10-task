@@ -1,6 +1,5 @@
-# myapp
-
-Lisa10 task backend
+## Lisa10 task backend
+This is a simple task of Lisa10 project.
 
 ## Quick Start
 
