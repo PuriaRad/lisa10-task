@@ -8,10 +8,10 @@ This is a simple task of Lisa10 project.
 npm install
 
 # run in development mode
-npm dev
+npm run dev
 
 # build 
-npm build
+npm run build
 
 ```
 
