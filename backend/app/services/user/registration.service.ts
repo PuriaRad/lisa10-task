@@ -93,7 +93,7 @@ export class RegistrationService {
               },
               {
                 name: 'maxlength',
-                message: 'Must be less than 47 characters.',
+                message: 'Must be less than 10 characters.',
                 value: 10,
               },
               {
