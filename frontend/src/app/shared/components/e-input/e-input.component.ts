@@ -24,11 +24,15 @@ export class EInputComponent implements OnInit {
   @Input() group: FormGroup;
   @Input() field: RegistrationField;
 
+  isPassword = false;
+
   /* ------------------------------- constructor ------------------------------ */
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.isPassword = this.field.type === 'password' ? true : false;
+    console.log('this.isPassword :>> ', this.isPassword);
   }
 
   ngAfterContentChecked(): void {

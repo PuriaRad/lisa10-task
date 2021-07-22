@@ -3,22 +3,44 @@
     >{{ field.name }}
   </label>
   <small class="text-danger" *ngIf="field.required"> * </small>
+  <div class="input-group">
+    <input
+      [formControlName]="field.name"
+      [placeholder]="field.label"
+      [type]="field.type != 'phone' ? field.type : 'tel'"
+      [class.is-valid]="
+        group.get(field.name).valid && group.get(field.name).touched
+      "
+      [class.is-invalid]="
+        !group.get(field.name).valid && group.get(field.name).touched
+      "
+      [required]="field.required"
+      autocomplete="off"
+      aria-autocomplete="none"
+      class="form-control"
+    />
 
-  <input
-    [formControlName]="field.name"
-    [placeholder]="field.label"
-    [type]="field.type != 'phone' ? field.type : 'tel'"
-    [class.is-valid]="
-      group.get(field.name).valid && group.get(field.name).touched
-    "
-    [class.is-invalid]="
-      !group.get(field.name).valid && group.get(field.name).touched
-    "
-    [required]="field.required"
-    autocomplete="off"
-    aria-autocomplete="none"
-    class="form-control"
-  />
+    <!-- ---------------------------- password eye ----------------------------- -->
+
+    <div class="input-group-addon" *ngIf="isPassword">
+      <button
+        class="btn text-primary border-top border-right border-bottom"
+        type="button"
+        (click)="field.type = field.type == 'password' ? 'text' : 'password'"
+      >
+        <i
+          *ngIf="field.type == 'password'"
+          class="fa fa-eye-slash"
+          aria-hidden="true"
+        ></i>
+        <i
+          *ngIf="field.type == 'text'"
+          class="fa fa-eye"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </div>
+  </div>
   <ng-container *ngFor="let validation of field.validations">
     <small
       class="form-text text-danger"
